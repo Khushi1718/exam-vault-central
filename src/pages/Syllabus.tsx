@@ -1,17 +1,46 @@
 import Layout from "@/components/Layout";
+import { Card, CardContent } from "@/components/ui/card";
+import { ClipboardList, ChevronRight } from "lucide-react";
+
+const departments = [
+  { name: "Computer Science", courses: 12 },
+  { name: "Mechanical Engineering", courses: 10 },
+  { name: "Electrical Engineering", courses: 11 },
+  { name: "Civil Engineering", courses: 9 },
+  { name: "Business Administration", courses: 8 },
+  { name: "Mathematics", courses: 7 },
+];
 
 const Syllabus = () => (
   <Layout>
-    <h1 className="text-3xl font-bold mb-4">Syllabus</h1>
-    <p className="mb-4 text-muted-foreground">
-      Check out the latest syllabus for your university courses. Knowing the syllabus helps you plan your study schedule and focus on important topics.
-    </p>
-    <p className="mb-4 text-muted-foreground">
-      We regularly update our syllabus section to match the latest curriculum changes. If you notice any outdated information, please let us know through the contact page.
-    </p>
-    <p className="text-muted-foreground">
-      Etiam porta sem malesuada magna mollis euismod. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum.
-    </p>
+    <section className="bg-gradient-to-br from-primary to-primary/70 text-primary-foreground px-6 py-16">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-4xl font-bold mb-2">Syllabus</h1>
+        <p className="text-lg opacity-90">Latest curriculum for your university courses.</p>
+      </div>
+    </section>
+
+    <section className="max-w-6xl mx-auto px-6 py-12">
+      <p className="text-muted-foreground mb-8 max-w-2xl">
+        We regularly update our syllabus section to match the latest curriculum changes. Select a department below to see available courses.
+      </p>
+      <div className="space-y-3">
+        {departments.map(d => (
+          <Card key={d.name} className="hover:shadow-md transition-shadow cursor-pointer">
+            <CardContent className="p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <ClipboardList className="w-5 h-5 text-primary" />
+                <span className="font-medium">{d.name}</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <span>{d.courses} courses</span>
+                <ChevronRight className="w-4 h-4" />
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </section>
   </Layout>
 );
 
